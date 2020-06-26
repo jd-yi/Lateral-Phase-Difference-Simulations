@@ -7,7 +7,7 @@
 % to manuscript for references and more details. 
 %% initialize
 clear
-dt = 0.1;
+dt = 1;%0.1;
 t = 0:dt:2000;
 fs = 1000/dt;
 L = length(t);
@@ -64,7 +64,7 @@ fHigh = 200;
 for ff = fLow:fstep:fHigh 
     phase1 = pi*(2*rand()-1);
     shift = -pi/2;%this parameter determines the phase shift of the two regions
-    phase2 = phase1 - (shift+0.3.*pi*(2*rand()-1));
+    phase2 = phase1 - (shift+0.3*pi*(2*rand()-1));
     %signal = signal + (1/ff)*sin(2*pi*(ff/1000)*t-phase);
     signal1 = signal1 + map(ff,0.5,8,10)*sin(2*pi*(ff/1000)*t-phase1);
     signal2 = signal2 + map(ff,0.5,8,10)*sin(2*pi*(ff/1000)*t-phase2);
@@ -73,7 +73,7 @@ end
 % oscillator sources
 
 %this is the amplitude of the LFP modulations 
-ampl = 0.1;%2;%0.05;
+ampl = 1;%2;%0.05;
 oscs = NaN(N,length(t));
 
 oscs(1,:)= ampl.*(signal1./max(abs(signal1)));
@@ -126,8 +126,8 @@ X(1,:,:) = data1;
 X(2,:,:) = data2;
 momax = 50;
 % % RUN THE BIC if you want to know the model order (how many lags to use)
-% [~,BIC] = tsdata_to_infocrit(X,30,'LWR');
-% [~,bmo_BIC] = min(BIC);
+%[~,BIC] = tsdata_to_infocrit(X,momax,'LWR');
+%[~,bmo_BIC] = min(BIC);
 % 
 % number of freq bands to consider
 freqres = 10000;
@@ -136,7 +136,7 @@ freqs = sfreqs(freqres,fs);
 %number of bootstrap samples
 nSamp = 10;
 
-fBpw = bootstrap_tsdata_to_spwcgc(X,17,freqres,nSamp,0,1E-6);%27
+fBpw = bootstrap_tsdata_to_spwcgc(X,5,freqres,nSamp,0,1E-6);%27
 
 %GRANGER 2 -> 1
 fB12pw = reshape(fBpw(:,1,2,:),nSamp,[]);
