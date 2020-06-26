@@ -1,5 +1,5 @@
 %% 
-%This file runs the code to generate the simulations in Fig 4 and Fig S2. It plots
+%This file runs the code to generate the simulations in Fig 4 (stimA coef = 0.5) and Fig S2 (stimA coef 1.5). It plots
 %both the timeseries and the FFT for a single trial at a given phase. 
 
 tic
@@ -90,8 +90,8 @@ oscs(2,:)= ampl.*(signal(2,:)./max(abs(signal(2,:))));
 %this code decides the strength of the stimulus. adjust the coefficent for
 %different values
 stimA = zeros(4,length(t));
-stimA(1,:) = 1.5*(t>300&t<1600).*ones(1,length(t));%usually 0.5
-stimA(2,:) = 1.5*(t>300&t<1600).*ones(1,length(t));
+stimA(1,:) = 0.5*(t>300&t<1600).*ones(1,length(t));%for Fig 4, use 0.5, for Fig S2, use 1.5
+stimA(2,:) = 0.5*(t>300&t<1600).*ones(1,length(t));
 
 %% simulate
 for i = 2:length(t)
