@@ -15,8 +15,5 @@ To reproduce the following figures, you may run the approriate `*.m` file from t
 **Fig. 4/S2**:attractor_dynamics_phase_bias_presentatphase_ANNOTATED.m
 
 
-**Fig. 3AB**:attractor_dynamics_phase_bias_testing_ANNOTATED.m
-
-
 **Fig. S1**:ifft_alpha_ANNOTATED.m
 
